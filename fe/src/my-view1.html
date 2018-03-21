@@ -36,21 +36,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="circle">1</div>
       <h1>View One</h1>
 
+      <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
+      </google-map-search>
+
       <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
-        <google-map-marker latitude="51.9165" longitude="4.445"
+        <google-map-marker latitude="51.8365" longitude="4.46"
+                           title="Pacmen Go!" draggable="true" animation="DROP" click-events="true"
+                           on-google-map-marker-click="alert('hallo')"></google-map-marker>
+
+        <google-map-marker latitude="51.84668" longitude="4.44"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
-        <google-map-marker latitude="51.91668" longitude="4.44"
+        <google-map-marker latitude="51.82670" longitude="4.45"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
-        <google-map-marker latitude="51.91670" longitude="4.45"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
-
-
+        <template is="dom-repeat" items="{{results}}" as="marker">
+          <google-map-marker latitude="{{marker.latitude}}"
+                             longitude="{{marker.longitude}}">
+            <h2>{{marker.name}}</h2>
+            <span>{{marker.formatted_address}}</span>
+          </google-map-marker>
+        </template>
 
       </google-map>
 
