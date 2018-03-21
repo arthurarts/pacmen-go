@@ -14,6 +14,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -61,47 +63,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
+
         <div class="card" flex="column">
             <h1>View all the local deals!</h1>
         </div>
 
         <div class="horizontal">
-        <template is="dom-repeat" items="[[markers]]" as="marker">
+            <business-locations on-get-markers="getMarkers"></business-locations>
 
-            <paper-card
-                    image="https://ing.dist.sdlmedia.com/Distributions/?f=49B1DF51-F1E2-4910-88EE-74395FB074F4&ext=.jpg">
-                <!--<paper-card>-->
-                <div class="card-content">
-                    <div class="cafe-header">[[marker.label]]
-                        <div class="cafe-location cafe-light">
-                            <iron-icon icon="communication:location-on"></iron-icon>
-                            <span>250ft</span>
+            <template is="dom-repeat" items="[[markers]]" as="marker">
+
+                <paper-card
+                        image="[[marker.image]]">
+                    <!--<paper-card>-->
+                    <div class="card-content">
+                        <div class="cafe-header">[[marker.shoptitle]]
+                            <div class="cafe-location cafe-light">
+                                <iron-icon icon="communication:location-on"></iron-icon>
+                                <span>[[marker.formatted_address]]</span>
+                            </div>
+                        </div>
+                        <div class="cafe-rating">
+                            <iron-icon class="star" icon="star"></iron-icon>
+                            <iron-icon class="star" icon="star"></iron-icon>
+                            <iron-icon class="star" icon="star"></iron-icon>
+                            <iron-icon class="star" icon="star"></iron-icon>
+                            <iron-icon class="star" icon="star"></iron-icon>
+                        </div>
+                        <p>[[marker.deal.label]]</p>
+                        <p class="cafe-light">Small plates, salads &amp; sandwiches in an intimate setting.</p>
+                    </div>
+                    <div class="card-actions">
+                        <div class="horizontal justified">
+                            <paper-icon-button icon="icons:event"></paper-icon-button>
+                            <paper-button>Get Info</paper-button>
+                            <paper-button>Get Direction</paper-button>
+                            <paper-button>Get Deal</paper-button>
                         </div>
                     </div>
-                    <div class="cafe-rating">
-                        <iron-icon class="star" icon="star"></iron-icon>
-                        <iron-icon class="star" icon="star"></iron-icon>
-                        <iron-icon class="star" icon="star"></iron-icon>
-                        <iron-icon class="star" icon="star"></iron-icon>
-                        <iron-icon class="star" icon="star"></iron-icon>
-                    </div>
-                    <p>&eur; 1,00 for a StarTruck Coffee</p>
-                    <p class="cafe-light">Small plates, salads &amp; sandwiches in an intimate setting.</p>
-                </div>
-                <div class="card-actions">
-                    <div class="horizontal justified">
-                        <paper-icon-button icon="icons:event"></paper-icon-button>
-                        <paper-button>Get Info</paper-button>
-                        <paper-button>Get Direction</paper-button>
-                        <paper-button>Get Deal</paper-button>
-                    </div>
-                </div>
-            </paper-card>
-
-            <!--<div class="card">-->
-            <!--<div class="label">[[marker.label]]</div>-->
-            <!--</div>-->
-        </template>
+                </paper-card>
+            </template>
         </div>
     </template>
 
@@ -116,25 +117,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return {
                     markers: {
                         type: Object,
-                        value: [
-                            {
-                                "label": "shop 1",
-                                "latitude": 51.9170129,
-                                "longitude": 4.4802848
-                            },
-                            {
-                                "label": "shop 2",
-                                "latitude": 51.9168602,
-                                "longitude": 4.4802878
-                            },
-                            {
-                                "label": "shop 3",
-                                "latitude": 51.9167255,
-                                "longitude": 4.4803051
-                            }]
-                    }
+                        notify: true,
+                    },
                 }
             }
+
+
+            getMarkers(event) {
+                this.markers = event.detail.markers;
+            }
+
+
         }
 
         window.customElements.define(MyView2.is, MyView2);

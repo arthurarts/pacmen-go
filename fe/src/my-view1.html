@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
+<link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -49,6 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ></iron-ajax>
 
 
+      <business-locations on-get-markers="getMarkers"></business-locations>
 
       <google-map-directions map="{{map}}"
                              api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
@@ -64,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            title="ING Club" draggable="true" animation="DROP"></google-map-marker>
         <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
-            <p><b>{{marker.label}}</b></p>
+            <p><b>{{marker.dealabel}}</b></p>
             <span><b>{{marker.shoptitle}}</b><br>
             {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
           </google-map-marker>
@@ -97,7 +99,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     notify: true,
                     value: 4.4
                 },
-                markers: Object,
+                markers: {
+                    type: Object,
+                    notify: true,
+                },
             }
         }
 
@@ -110,9 +115,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             console.log(events);
         }
 
-        handleResponse(event) {
-            this.markers = event.detail.response.markers;
-          console.log(this.markers)
+        getMarkers(event) {
+            this.markers = event.detail.markers;
         }
 
     }
