@@ -22,7 +22,7 @@
                 }
             }
             handleResponse(event) {
-                this.markers = event.detail.response.markers;
+                this.dispatchEvent(new CustomEvent('get-markers',{bubbles: true, composed: true, detail: {markers: event.detail.response.markers}}));
             }
         }
         window.customElements.define(BusinessLocations.is, BusinessLocations);
