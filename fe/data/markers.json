@@ -1,7 +1,10 @@
 {
-  "markers":[
+  "markers": [
     {
-      "label": "10% discount!",
+      "deal": {
+        "category": "ice_cream",
+        "label": "10% discount!"
+      },
       "latitude": 51.222297,
       "longitude": 4.501967,
       "shoptitle": "Cold Java",
@@ -9,7 +12,10 @@
       "image": "../images/ice_cream.jpg"
     },
     {
-      "label": "Free upgrade to a Large coffee!",
+      "deal": {
+        "category": "coffee",
+        "label": "Free upgrade to a Large coffee!"
+      },
       "latitude": 51.221629,
       "longitude": 4.500814,
       "shoptitle": "Fresh Java",
@@ -17,7 +23,10 @@
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "Second ice cream free!",
+      "deal": {
+        "category": "ice_cream",
+        "label": "Second ice cream free!"
+      },
       "latitude": 51.222168,
       "longitude": 4.500980,
       "shoptitle": "Cold Java",
@@ -25,7 +34,10 @@
       "image": "../images/ice_cream.jpg"
     },
     {
-      "label": "Deal spotted!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 51.222023,
       "longitude": 4.502584,
       "shoptitle": "Fresh Java",
@@ -33,7 +45,10 @@
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "Coffee Deal!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 51.222418,
       "longitude": 4.500551,
       "shoptitle": "Fresh Java",
@@ -41,7 +56,10 @@
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "Deal spotted!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 51.221810,
       "longitude": 4.500398,
       "shoptitle": "Fresh Java",
@@ -49,7 +67,10 @@
       "image": "../images/java.jpg"
     },
     {
-      "label": "Deal spotted!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 51.222665,
       "longitude": 4.501364,
       "shoptitle": "Fresh Java",
@@ -57,7 +78,10 @@
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "Deal spotted!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 52.3909611,
       "longitude": 4.9433656,
       "shoptitle": "Fresh Java",
@@ -65,7 +89,10 @@
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "Deal spotted!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 51.222660,
       "longitude": 4.501731,
       "shoptitle": "Fresh Java",
@@ -73,7 +100,10 @@
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "Deal spotted!",
+      "deal": {
+        "category": "coffee",
+        "label": "Deal spotted!"
+      },
       "latitude": 51.222969,
       "longitude": 4.502182,
       "shoptitle": "Fresh Java",
