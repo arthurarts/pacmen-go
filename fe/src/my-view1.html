@@ -63,16 +63,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            title="Pacmen Go!" draggable="true" animation="DROP"></google-map-marker>
 
         <template is="dom-repeat" items="{{markers}}" as="marker">
-          <google-map-marker latitude="{{marker.latitude}}"
-                             longitude="{{marker.longitude}}">
+          <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
             <p>{{marker.label}}</p>
-            <span>{{marker.formatted_address}}</span>
+<!--            <span><b>{{marker.title}}</b><br>
+            {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>-->
+
           </google-map-marker>
         </template>
 
       </google-map>
-
-
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
     </div>
@@ -81,16 +80,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     class MyView1 extends Polymer.Element {
-        static get is() {
-            return 'my-view1';
-        }
+      static get is() {
+        return 'my-view1';
+      }
 
-        static get properties() {
-            return {
-                latitude: {
-                    type: Number,
-                    notify: true,
-                    value: 51.81667
+      static get properties() {
+        return {
+          latitude: {
+            type: Number,
+            notify: true,
+            value: 51.81667
 
                 },
                 map: Object,
@@ -104,10 +103,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
         }
 
-        ready() {
-            this.addEventListener('google-map-marker-click', this.markerClicked);
-            super.ready();
-        }
+      ready() {
+        this.addEventListener('google-map-marker-click', this.markerClicked);
+        super.ready();
+      }
 
         markerClicked(events) {
             console.log(events);
@@ -115,6 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         handleResponse(event) {
             this.markers = event.detail.response.markers;
+          console.log(this.markers)
         }
 
     }
