@@ -52,10 +52,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <google-map-directions map="{{map}}"
                              api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                             start-address="van nelle fabriek"
-                             end-address="nibbixwoudstraat"
+                             start-address="koolsveldlaan"
+                             end-address="Dorenboslaan"
                              travel-mode="WALKING"
-                             waypoints='[{"location": "van nelle fabriek"}, {"location": "nibbixwoudstraat"}]'></google-map-directions>
+                             waypoints='[{"location": "koolsveldlaan"}, {"location": "Dorenboslaan"}]'></google-map-directions>
 
       <google-map map="{{map}}" latitude="51.91667" longitude="4.5"
                   api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
             <p>{{marker.label}}</p>
-            <span><b>{{marker.title}}</b><br>
+            <span><b>{{marker.shoptitle}}</b><br>
             {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
 
           </google-map-marker>
