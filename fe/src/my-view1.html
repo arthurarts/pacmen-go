@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -47,8 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               method="GET"
       ></iron-ajax>
 
-      <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
-      </google-map-search>
+
 
       <google-map-directions map="{{map}}"
                              api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
@@ -62,16 +62,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                            title="ING Club" draggable="true" animation="DROP"></google-map-marker>
-
         <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
             <p><b>{{marker.label}}</b></p>
             <span><b>{{marker.shoptitle}}</b><br>
             {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
-
           </google-map-marker>
         </template>
-
       </google-map>
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
