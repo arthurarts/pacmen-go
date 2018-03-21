@@ -40,6 +40,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
 
+      <google-map-directions map="{{map}}"
+                             api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
+                             start-address="nibbixwoudstraat 6 amsterdam"
+                             end-address="Nieuwendammerdijk 278 amsterdam"
+                             travel-mode="BICYCLING"
+                             waypoints='[{"location": "Palo Alto"}, {"location": "San Mateo"}]'></google-map-directions>
+
       <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
