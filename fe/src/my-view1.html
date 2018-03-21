@@ -15,7 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-poly.html">
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
@@ -40,9 +39,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="map">
       <business-locations on-get-markers="getMarkers"></business-locations>
-
-      <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
-      </google-map-search>
 
       <google-map-directions map="{{map}}"
                              api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
