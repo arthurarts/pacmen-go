@@ -23,41 +23,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
+      }
 
-        padding: 10px;
+      .map {
+        width: 100%;
+        height: 100%;
       }
 
       google-map {
-        height: 600px;
+        margin: 0;
+        height: 88vh;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>Scoor punten!</h1>
 
+    <div class="map">
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
+
+      <google-map-directions map="{{map}}"
+                             api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
+                             start-address="nibbixwoudstraat 6 amsterdam"
+                             end-address="Nieuwendammerdijk 278 amsterdam"
+                             travel-mode="BICYCLING"
+                             waypoints='[{"location": "Palo Alto"}, {"location": "San Mateo"}]'></google-map-directions>
 
       <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
-        <google-map-marker latitude="51.9165" longitude="4.445"
-                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
-
-        <google-map-marker latitude="51.91668" longitude="4.44"
-                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
-
-        <google-map-marker latitude="51.91670" longitude="4.45"
-                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
-
-
-        <template is="dom-repeat" items="{{results}}" as="marker">
+        <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}"
                              longitude="{{marker.longitude}}">
-            <h2>{{marker.name}}</h2>
+            <h2>{{marker.label}}</h2>
             <span>{{marker.formatted_address}}</span>
           </google-map-marker>
         </template>
@@ -67,44 +66,107 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-<ul>
-      <li>latitude : [[latitude]]</li>
-      <li>longitude: [[longitude]]</li>
-</ul>
     </div>
 
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
-
-      static get properties() {
-        return {
-          latitude: {
-            type: Number,
-            notify: true,
-            value: 51.81667
-
-          },
-          longitude: {
-            type: Number,
-            notify: true,
-            value: 4.4
-          }
+        static get is() {
+            return 'my-view1';
         }
-      }
 
-      ready() {
-          this.addEventListener('google-map-marker-click', this.markerClicked);
-          super.ready();
-      }
+        static get properties() {
+            return {
+                latitude: {
+                    type: Number,
+                    notify: true,
+                    value: 51.81667
 
-      markerClicked (events) {
-        alert('hi');
-      }
+                },
+                longitude: {
+                    type: Number,
+                    notify: true,
+                    value: 4.4
+                },
+                markers: {
+                    type: Object,
+                    value:  [
+                        {
+                            label:'shop 1',
+                            latitude: 51.9170129,
+                            longitude: 4.4802848	,
+                        },
+                        {
+                            label:'shop 2',
+                            latitude: 51.9168602,
+                            longitude: 4.4802878,
+                        },
+                        {
+                            label:'shop 3',
+                            latitude: 51.9167255,
+                            longitude: 4.4803051,
+                        },
+                        {
+                            label:'shop 4',
+                            latitude: 51.9165008,
+                            longitude: 4.4803096,
+                        },
+                        {
+                            label:'mall 1',
+                            latitude: 51.9506212,
+                            longitude: 4.5558199,
+                        },
+                        {
+                            label:'mall 2',
+                            latitude: 51.8887324,
+                            longitude: 4.4904812,
+                        },
+                        {
+                            label:'mall 3',
+                            latitude: 	52.373646,
+                            longitude: 4.8903201,
+                        },
+                        {
+                            label:'shop 5',
+                            latitude: 52.3909611,
+                            longitude: 4.9433656,
+                        },
+                        {
+                            label:'shop 6',
+                            latitude: 52.3906959,
+                            longitude: 4.9445582,
+                        },
+                        {
+                            label:'shop 7',
+                            latitude: 52.3911467,
+                            longitude: 4.9449356,
+                        },
+                        {
+                            label:'shop 8',
+                            latitude: 52.3915648,
+                            longitude: 4.943771,
+                        },
+                        {
+                            label:'shop 9',
+                            latitude: 52.3920332,
+                            longitude: 4.9416655,
+                        }
+                    ]
+                }
+            }
+        }
+
+        ready() {
+            this.addEventListener('google-map-marker-click', this.markerClicked);
+            super.ready();
+        }
+
+        markerClicked(events) {
+            alert('hi');
+        }
+
     }
-
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>
