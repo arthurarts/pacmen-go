@@ -9,7 +9,7 @@
       "longitude": 4.501967,
       "shoptitle": "Cold Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/ice_cream.jpg"
+      "image": "../images/ice_cream.jpeg"
     },
     {
       "deal": {
@@ -20,18 +20,18 @@
       "longitude": 4.500814,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     },
     {
       "deal": {
-        "category": "ice_cream",
-        "label": "Second ice cream free!"
+        "category": "barber",
+        "label": "Free beard trim!"
       },
       "latitude": 51.222168,
       "longitude": 4.500980,
       "shoptitle": "Cold Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/ice_cream.jpg"
+      "image": "../images/barber.jpeg"
     },
     {
       "deal": {
@@ -42,7 +42,7 @@
       "longitude": 4.502584,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     },
     {
       "deal": {
@@ -53,7 +53,7 @@
       "longitude": 4.500551,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     },
     {
       "deal": {
@@ -75,7 +75,7 @@
       "longitude": 4.501364,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     },
     {
       "deal": {
@@ -86,7 +86,7 @@
       "longitude": 4.9433656,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     },
     {
       "deal": {
@@ -97,7 +97,7 @@
       "longitude": 4.501731,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     },
     {
       "deal": {
@@ -108,7 +108,7 @@
       "longitude": 4.502182,
       "shoptitle": "Fresh Java",
       "formatted_address": "Wagenstraat 21 Antwerpen",
-      "image": "../images/get-coffie.jpg"
+      "image": "../images/coffee.jpeg"
     }
   ]
 }

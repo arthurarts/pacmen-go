@@ -25,7 +25,7 @@
                 longitude: 4.500551,
                 shoptitle: 'Fresh Java',
                 formatted_address: 'Wagenstraat 21 Amsterdam',
-                image: '../images/get-coffie.jpg'
+                image: '../images/coffee.jpeg'
 
               },
               {
