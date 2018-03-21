@@ -50,14 +50,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
 
-      <google-map-directions map="{{map}}"
-                             api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                             start-address="van nelle fabriek"
-                             end-address="nibbixwoudstraat"
-                             travel-mode="WALKING"
-                             waypoints='[{"location": "van nelle fabriek"}, {"location": "nibbixwoudstraat"}]'></google-map-directions>
+      <!--<google-map-directions map="{{map}}"-->
+                             <!--api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"-->
+                             <!--start-address="van nelle fabriek"-->
+                             <!--end-address="nibbixwoudstraat"-->
+                             <!--travel-mode="WALKING"-->
+                             <!--waypoints='[{"location": "van nelle fabriek"}, {"location": "nibbixwoudstraat"}]'></google-map-directions>-->
 
-      <google-map map="{{map}}" latitude="51.91667" longitude="4.5"
+      <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
                   api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
@@ -65,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
-            <p>{{marker.label}}</p>
+            <H2>{{marker.label}}</H2>
             <span><b>{{marker.title}}</b><br>
             {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
 
