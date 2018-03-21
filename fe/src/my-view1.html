@@ -54,16 +54,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
         <template is="dom-repeat" items="{{markers}}" as="marker">
-          <google-map-marker latitude="{{marker.latitude}}"
-                             longitude="{{marker.longitude}}">
+          <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
             <h2>{{marker.label}}</h2>
             <span>{{marker.formatted_address}}</span>
           </google-map-marker>
         </template>
 
       </google-map>
-
-
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
     </div>
