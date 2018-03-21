@@ -9,30 +9,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax">
+<link rel="import" href="../bower_components/iron-list">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="data.json">
 
 <dom-module id="my-view2">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+            }
+            iron-list {
+                flex: 1 1 auto;
+            }
+        </style>
 
-        padding: 10px;
-      }
-    </style>
+        <div class="card">
+            <h1>View all the local deals!</h1>
+            <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
+            <iron-list items="[[data]]" as="item">
+                    <div> Name: [[item.name]]
+                    </div>
+            </iron-list>
+        </div>
+    </template>
 
-    <div class="card">
-      <h1>View all the local deals!</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
-  </template>
+    <script>
+        class MyView2 extends Polymer.Element {
+            static get is() {
+                return 'my-view2';
+            }
+        }
 
-  <script>
-    class MyView2 extends Polymer.Element {
-      static get is() { return 'my-view2'; }
-    }
-
-    window.customElements.define(MyView2.is, MyView2);
-  </script>
+        window.customElements.define(MyView2.is, MyView2);
+    </script>
 </dom-module>
