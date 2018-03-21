@@ -69,10 +69,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template is="dom-repeat" items="[[markers]]" as="marker">
 
             <paper-card
-                    image="https://ing.dist.sdlmedia.com/Distributions/?f=49B1DF51-F1E2-4910-88EE-74395FB074F4&ext=.jpg">
+                    image="[[marker.image]]">
                 <!--<paper-card>-->
                 <div class="card-content">
-                    <div class="cafe-header">[[marker.label]]
+                    <div class="cafe-header">[[marker.shoptitle]]
                         <div class="cafe-location cafe-light">
                             <iron-icon icon="communication:location-on"></iron-icon>
                             <span>250ft</span>
@@ -118,19 +118,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         type: Object,
                         value: [
                             {
-                                "label": "shop 1",
-                                "latitude": 51.9170129,
-                                "longitude": 4.4802848
+                                "label": "Deal spotted!",
+                                "latitude": 51.222297,
+                                "longitude": 4.501967,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
                             },
                             {
-                                "label": "shop 2",
-                                "latitude": 51.9168602,
-                                "longitude": 4.4802878
+                                "label": "Deal spotted!",
+                                "latitude": 51.221629,
+                                "longitude": 4.500814,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
                             },
                             {
-                                "label": "shop 3",
-                                "latitude": 51.9167255,
-                                "longitude": 4.4803051
+                                "label": "Deal spotted!",
+                                "latitude": 51.222168,
+                                "longitude": 4.500980,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
+                            },
+                            {
+                                "label": "Deal spotted!",
+                                "latitude": 51.222023,
+                                "longitude": 4.502584,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
                             }]
                     }
                 }
