@@ -22,25 +22,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 flex-direction: column;
                 padding: 10px;
             }
+
             iron-list {
                 flex: 1 1 auto;
             }
         </style>
 
         <div class="card">
+            <!--put a local piece of json here for now-->
+            <!--<iron-ajax-->
+            <!--auto-->
+            <!--url="data/markers.json"-->
+            <!--handle-as="json"-->
+            <!--on-response="handleResponse"-->
+            <!--method="GET"-->
+            <!--&gt;</iron-ajax>-->
+
             <h1>View all the local deals!</h1>
-            <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
-            <iron-list items="[[data]]" as="item">
-                    <div> Name: [[item.name]]
-                    </div>
-            </iron-list>
         </div>
+
+        <template is="dom-repeat" items="[[markers]]" as="marker">
+            <div class="card">
+                <div class="label">[[marker.label]]</div>
+            </div>
+
+        </template>
+
     </template>
 
     <script>
         class MyView2 extends Polymer.Element {
             static get is() {
                 return 'my-view2';
+            }
+
+
+            static get properties() {
+                return {
+                    markers: {
+                        type: Object,
+                        value: [
+                            {
+                                "label": "shop 1",
+                                "latitude": 51.9170129,
+                                "longitude": 4.4802848
+                            },
+                            {
+                                "label": "shop 2",
+                                "latitude": 51.9168602,
+                                "longitude": 4.4802878
+                            },
+                            {
+                                "label": "shop 3",
+                                "latitude": 51.9167255,
+                                "longitude": 4.4803051
+                            }]
+                    }
+                }
             }
         }
 
