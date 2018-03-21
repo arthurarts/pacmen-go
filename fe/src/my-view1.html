@@ -52,20 +52,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
-        <google-map-marker latitude="51.9165" longitude="4.445"
-                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
-
-        <google-map-marker latitude="51.91668" longitude="4.44"
-                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
-
-        <google-map-marker latitude="51.91670" longitude="4.45"
-                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
-
-
-        <template is="dom-repeat" items="{{results}}" as="marker">
+        <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}"
                              longitude="{{marker.longitude}}">
-            <h2>{{marker.name}}</h2>
+            <h2>{{marker.label}}</h2>
             <span>{{marker.formatted_address}}</span>
           </google-map-marker>
         </template>
@@ -95,6 +85,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Number,
                     notify: true,
                     value: 4.4
+                },
+                markers: {
+                    type: Object,
+                    value:  [
+                        {
+                            label:'shop 1',
+                            latitude: 51.9170129,
+                            longitude: 4.4802848	,
+                        },
+                        {
+                            label:'shop 2',
+                            latitude: 51.9168602,
+                            longitude: 4.4802878,
+                        },
+                        {
+                            label:'shop 3',
+                            latitude: 51.9167255,
+                            longitude: 4.4803051,
+                        },
+                        {
+                            label:'shop 4',
+                            latitude: 51.9165008,
+                            longitude: 4.4803096,
+                        },
+                        {
+                            label:'mall 1',
+                            latitude: 51.9506212,
+                            longitude: 4.5558199,
+                        },
+                        {
+                            label:'mall 2',
+                            latitude: 51.8887324,
+                            longitude: 4.4904812,
+                        },
+                        {
+                            label:'mall 3',
+                            latitude: 	52.373646,
+                            longitude: 4.8903201,
+                        },
+                        {
+                            label:'shop 5',
+                            latitude: 52.3909611,
+                            longitude: 4.9433656,
+                        },
+                        {
+                            label:'shop 6',
+                            latitude: 52.3906959,
+                            longitude: 4.9445582,
+                        },
+                        {
+                            label:'shop 7',
+                            latitude: 52.3911467,
+                            longitude: 4.9449356,
+                        },
+                        {
+                            label:'shop 8',
+                            latitude: 52.3915648,
+                            longitude: 4.943771,
+                        },
+                        {
+                            label:'shop 9',
+                            latitude: 52.3920332,
+                            longitude: 4.9416655,
+                        }
+                    ]
                 }
             }
         }
