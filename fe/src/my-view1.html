@@ -23,19 +23,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
+      }
 
-        padding: 10px;
+      .map {
+        width: 100%;
+        height: 100%;
       }
 
       google-map {
-        height: 600px;
+        margin: 0;
+        height: 88vh;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-
+    <div class="map">
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
 
