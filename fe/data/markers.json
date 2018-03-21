@@ -1,27 +1,31 @@
 {
   "markers":[
     {
-      "label": "shop 1",
+      "label": "Fresh Java",
       "latitude": 51.222297,
       "longitude": 4.501967,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "shop 2",
+      "label": "Fresh Java",
       "latitude": 51.221629,
       "longitude": 4.500814,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "shop 3",
+      "label": "Fresh Java",
       "latitude": 51.222168,
       "longitude": 4.500980,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "shop 4",
+      "label": "Fresh Java",
       "latitude": 51.222023,
       "longitude": 4.502584,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
@@ -29,7 +33,7 @@
       "latitude": 51.222418,
       "longitude": 4.500551,
       "shoptitle": "Fresh Java",
-      "formatted_address": "Wagenstraat 21 Amsterdam",
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
 
     },
@@ -41,27 +45,31 @@
       "image": "../images/java.jpg"
     },
     {
-      "label": "mall 3",
+      "label": "Fresh Java",
       "latitude": 51.222665,
       "longitude": 4.501364,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "shop 5",
+      "label": "Fresh Java",
       "latitude": 52.3909611,
       "longitude": 4.9433656,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "shop 6",
+      "label": "Fresh Java",
       "latitude": 51.222660,
       "longitude": 4.501731,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     },
     {
-      "label": "shop 7",
+      "label": "Fresh Java",
       "latitude": 51.222969,
       "longitude": 4.502182,
+      "formatted_address": "Wagenstraat 21 Antwerpen",
       "image": "../images/get-coffie.jpg"
     }
   ]
