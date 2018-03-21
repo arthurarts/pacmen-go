@@ -3,22 +3,26 @@
     {
       "label": "shop 1",
       "latitude": 51.222297,
-      "longitude": 4.501967
+      "longitude": 4.501967,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "shop 2",
       "latitude": 51.221629,
-      "longitude": 4.500814
+      "longitude": 4.500814,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "shop 3",
       "latitude": 51.222168,
-      "longitude": 4.500980
+      "longitude": 4.500980,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "shop 4",
       "latitude": 51.222023,
-      "longitude": 4.502584
+      "longitude": 4.502584,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "Coffee Deal!",
@@ -39,22 +43,26 @@
     {
       "label": "mall 3",
       "latitude": 51.222665,
-      "longitude": 4.501364
+      "longitude": 4.501364,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "shop 5",
       "latitude": 52.3909611,
-      "longitude": 4.9433656
+      "longitude": 4.9433656,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "shop 6",
       "latitude": 51.222660,
-      "longitude": 4.501731
+      "longitude": 4.501731,
+      "image": "../images/get-coffie.jpg"
     },
     {
       "label": "shop 7",
       "latitude": 51.222969,
-      "longitude": 4.502182
+      "longitude": 4.502182,
+      "image": "../images/get-coffie.jpg"
     }
   ]
 }
