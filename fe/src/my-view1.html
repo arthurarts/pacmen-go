@@ -42,19 +42,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
         <google-map-marker latitude="51.9165" longitude="4.445"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
+                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
 
         <google-map-marker latitude="51.91668" longitude="4.44"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
+                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
 
         <google-map-marker latitude="51.91670" longitude="4.45"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
+                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
 
 
 
       </google-map>
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+<ul>
+      <li>latitude : [[latitude]]</li>
+      <li>longitude: [[longitude]]</li>
+</ul>
     </div>
 
   </template>
@@ -67,18 +71,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
           latitude: {
             type: Number,
-            readOnly: true,
             notify: true,
             value: 51.81667
 
           },
           longitude: {
             type: Number,
-            readOnly: true,
             notify: true,
             value: 4.4
           }
         }
+      }
+
+      ready() {
+          this.addEventListener('google-map-marker-click', this.markerClicked);
+          super.ready();
+      }
+
+      markerClicked (events) {
+        alert('hi');
       }
     }
 
