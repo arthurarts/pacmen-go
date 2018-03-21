@@ -9,30 +9,151 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
 <link rel="import" href="shared-styles.html">
 
+
 <dom-module id="my-view2">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: flex;
+                flex-direction: column;
+            }
 
-        padding: 10px;
-      }
-    </style>
+            paper-card {
+                margin: 25px;
+                max-width: 500px;
+            }
 
-    <div class="card">
-      <h1>View all the local deals!</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
-  </template>
+            .cafe-header {
+                @apply --paper-font-headline;
+            }
 
-  <script>
-    class MyView2 extends Polymer.Element {
-      static get is() { return 'my-view2'; }
-    }
+            .cafe-light {
+                color: var(--paper-grey-600);
+            }
 
-    window.customElements.define(MyView2.is, MyView2);
-  </script>
+            .cafe-location {
+                float: right;
+                font-size: 15px;
+                vertical-align: middle;
+            }
+
+            .cafe-reserve {
+                color: var(--google-blue-500);
+            }
+
+            iron-icon.star {
+                --iron-icon-width: 16px;
+                --iron-icon-height: 16px;
+                color: var(--paper-amber-500);
+            }
+
+            iron-icon.star:last-of-type {
+                color: var(--paper-grey-500);
+            }
+
+        </style>
+
+        <div class="card" flex="column">
+            <h1>View all the local deals!</h1>
+        </div>
+
+        <div class="horizontal">
+        <template is="dom-repeat" items="[[markers]]" as="marker">
+
+            <paper-card
+                    image="[[marker.image]]">
+                <!--<paper-card>-->
+                <div class="card-content">
+                    <div class="cafe-header">[[marker.shoptitle]]
+                        <div class="cafe-location cafe-light">
+                            <iron-icon icon="communication:location-on"></iron-icon>
+                            <span>250ft</span>
+                        </div>
+                    </div>
+                    <div class="cafe-rating">
+                        <iron-icon class="star" icon="star"></iron-icon>
+                        <iron-icon class="star" icon="star"></iron-icon>
+                        <iron-icon class="star" icon="star"></iron-icon>
+                        <iron-icon class="star" icon="star"></iron-icon>
+                        <iron-icon class="star" icon="star"></iron-icon>
+                    </div>
+                    <p>&eur; 1,00 for a StarTruck Coffee</p>
+                    <p class="cafe-light">Small plates, salads &amp; sandwiches in an intimate setting.</p>
+                </div>
+                <div class="card-actions">
+                    <div class="horizontal justified">
+                        <paper-icon-button icon="icons:event"></paper-icon-button>
+                        <paper-button>Get Info</paper-button>
+                        <paper-button>Get Direction</paper-button>
+                        <paper-button>Get Deal</paper-button>
+                    </div>
+                </div>
+            </paper-card>
+
+            <!--<div class="card">-->
+            <!--<div class="label">[[marker.label]]</div>-->
+            <!--</div>-->
+        </template>
+        </div>
+    </template>
+
+    <script>
+        class MyView2 extends Polymer.Element {
+            static get is() {
+                return 'my-view2';
+            }
+
+
+            static get properties() {
+                return {
+                    markers: {
+                        type: Object,
+                        value: [
+                            {
+                                "label": "Deal spotted!",
+                                "latitude": 51.222297,
+                                "longitude": 4.501967,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
+                            },
+                            {
+                                "label": "Deal spotted!",
+                                "latitude": 51.221629,
+                                "longitude": 4.500814,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
+                            },
+                            {
+                                "label": "Deal spotted!",
+                                "latitude": 51.222168,
+                                "longitude": 4.500980,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
+                            },
+                            {
+                                "label": "Deal spotted!",
+                                "latitude": 51.222023,
+                                "longitude": 4.502584,
+                                "shoptitle": "Fresh Java",
+                                "formatted_address": "Wagenstraat 21 Antwerpen",
+                                "image": "../images/get-coffie.jpg"
+                            }]
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(MyView2.is, MyView2);
+    </script>
 </dom-module>
