@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../bower_components/google-map/google-map-poly.html">
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -34,8 +35,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div class="circle">1</div>
       <h1>View One</h1>
-g
-      <google-map latitude="37.77493" longitude="-122.41942" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"></google-map>
+
+      <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
+
+        <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
+                           title="Pacmen Go!" draggable="true"></google-map-marker>
+
+        <google-map-marker latitude="51.9165" longitude="4.445"
+                           title="Pacmen Go!" draggable="true"></google-map-marker>
+
+        <google-map-marker latitude="51.91668" longitude="4.44"
+                           title="Pacmen Go!" draggable="true"></google-map-marker>
+
+        <google-map-marker latitude="51.91670" longitude="4.45"
+                           title="Pacmen Go!" draggable="true"></google-map-marker>
+
+
+
+      </google-map>
+
+      <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
     </div>
 
   </template>
@@ -43,6 +62,24 @@ g
   <script>
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
+
+      static get properties() {
+        return {
+          latitude: {
+            type: Number,
+            readOnly: true,
+            notify: true,
+            value: 51.81667
+
+          },
+          longitude: {
+            type: Number,
+            readOnly: true,
+            notify: true,
+            value: 4.4
+          }
+        }
+      }
     }
 
     window.customElements.define(MyView1.is, MyView1);
