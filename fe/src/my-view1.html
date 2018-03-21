@@ -36,6 +36,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="circle">1</div>
       <h1>View One</h1>
 
+      <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
+      </google-map-search>
+
       <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
@@ -51,6 +54,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
 
 
+        <template is="dom-repeat" items="{{results}}" as="marker">
+          <google-map-marker latitude="{{marker.latitude}}"
+                             longitude="{{marker.longitude}}">
+            <h2>{{marker.name}}</h2>
+            <span>{{marker.formatted_address}}</span>
+          </google-map-marker>
+        </template>
 
       </google-map>
 
