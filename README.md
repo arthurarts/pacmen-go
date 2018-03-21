@@ -1,1 +1,1 @@
-# pacmen-go
+# Pacmen Go!
