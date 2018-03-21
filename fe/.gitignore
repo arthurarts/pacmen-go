@@ -18,6 +18,7 @@ target/
 
 ### NetBeans ###
 nbproject/private/
+bower_components/
 build/
 nbbuild/
 dist/
