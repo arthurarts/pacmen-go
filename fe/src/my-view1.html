@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-poly.html">
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -36,27 +37,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-
     <div class="map">
+
+      <iron-ajax
+              auto
+              url="data/markers.json"
+              handle-as="json"
+              on-response="handleResponse"
+              method="GET"
+      ></iron-ajax>
+
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
 
       <google-map-directions map="{{map}}"
                              api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                             start-address="nibbixwoudstraat 6 amsterdam"
-                             end-address="Nieuwendammerdijk 278 amsterdam"
-                             travel-mode="BICYCLING"
-                             waypoints='[{"location": "Palo Alto"}, {"location": "San Mateo"}]'></google-map-directions>
+                             start-address="rotterdam"
+                             end-address="amsterdam"
+                             travel-mode="WALKING"
+                             waypoints='[{"location": "rotterdam"}, {"location": "amsterdam"}]'></google-map-directions>
 
-      <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
+      <google-map map="{{map}}" latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
+                           title="Pacmen Go!" draggable="true" animation="DROP"></google-map-marker>
 
         <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}"
                              longitude="{{marker.longitude}}">
-            <h2>{{marker.label}}</h2>
+            <p>{{marker.label}}</p>
             <span>{{marker.formatted_address}}</span>
           </google-map-marker>
         </template>
@@ -84,76 +93,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     value: 51.81667
 
                 },
+                map: Object,
+
                 longitude: {
                     type: Number,
                     notify: true,
                     value: 4.4
                 },
-                markers: {
-                    type: Object,
-                    value:  [
-                        {
-                            label:'shop 1',
-                            latitude: 51.9170129,
-                            longitude: 4.4802848	,
-                        },
-                        {
-                            label:'shop 2',
-                            latitude: 51.9168602,
-                            longitude: 4.4802878,
-                        },
-                        {
-                            label:'shop 3',
-                            latitude: 51.9167255,
-                            longitude: 4.4803051,
-                        },
-                        {
-                            label:'shop 4',
-                            latitude: 51.9165008,
-                            longitude: 4.4803096,
-                        },
-                        {
-                            label:'mall 1',
-                            latitude: 51.9506212,
-                            longitude: 4.5558199,
-                        },
-                        {
-                            label:'mall 2',
-                            latitude: 51.8887324,
-                            longitude: 4.4904812,
-                        },
-                        {
-                            label:'mall 3',
-                            latitude: 	52.373646,
-                            longitude: 4.8903201,
-                        },
-                        {
-                            label:'shop 5',
-                            latitude: 52.3909611,
-                            longitude: 4.9433656,
-                        },
-                        {
-                            label:'shop 6',
-                            latitude: 52.3906959,
-                            longitude: 4.9445582,
-                        },
-                        {
-                            label:'shop 7',
-                            latitude: 52.3911467,
-                            longitude: 4.9449356,
-                        },
-                        {
-                            label:'shop 8',
-                            latitude: 52.3915648,
-                            longitude: 4.943771,
-                        },
-                        {
-                            label:'shop 9',
-                            latitude: 52.3920332,
-                            longitude: 4.9416655,
-                        }
-                    ]
-                }
+                markers: Object,
             }
         }
 
@@ -164,6 +111,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         markerClicked(events) {
             alert('hi');
+        }
+
+        handleResponse(event) {
+            this.markers = event.detail.response.markers;
         }
 
     }
