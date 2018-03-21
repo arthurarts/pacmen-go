@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -38,14 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="map">
-
-      <iron-ajax
-              auto
-              url="data/markers.json"
-              handle-as="json"
-              on-response="handleResponse"
-              method="GET"
-      ></iron-ajax>
+      <business-locations markers="{{markers}}"></business-locations>
 
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
@@ -100,7 +94,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     notify: true,
                     value: 4.4
                 },
-                markers: Object,
+                markers: {
+                    type: Object,
+                    notify: true,
+                },
             }
         }
 
@@ -111,10 +108,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         markerClicked(events) {
             console.log(events);
-        }
-
-        handleResponse(event) {
-            this.markers = event.detail.response.markers;
         }
 
     }
