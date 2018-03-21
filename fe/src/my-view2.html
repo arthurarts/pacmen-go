@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
@@ -79,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="cafe-header">[[marker.shoptitle]]
                             <div class="cafe-location cafe-light">
                                 <iron-icon icon="communication:location-on"></iron-icon>
-                                <span>250ft</span>
+                                <span>[[marker.formatted_address]]</span>
                             </div>
                         </div>
                         <div class="cafe-rating">
