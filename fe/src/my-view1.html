@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            title="ING Club" draggable="true" animation="DROP"></google-map-marker>
         <template is="dom-repeat" items="{{markers}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
-            <p><b>{{marker.dealabel}}</b></p>
+            <p><b>{{marker.deal.label}}</b></p>
             <span><b>{{marker.shoptitle}}</b><br>
             {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
           </google-map-marker>
