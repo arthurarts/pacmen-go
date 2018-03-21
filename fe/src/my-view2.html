@@ -18,30 +18,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 
 
-
 <dom-module id="my-view2">
     <template>
         <style include="shared-styles">
             :host {
                 display: flex;
                 flex-direction: column;
-                padding: 10px;
             }
 
-            iron-list {
-                flex: 1 1 auto;
+            paper-card {
+                margin: 25px;
+                max-width: 500px;
             }
+
+            .cafe-header {
+                @apply --paper-font-headline;
+            }
+
+            .cafe-light {
+                color: var(--paper-grey-600);
+            }
+
+            .cafe-location {
+                float: right;
+                font-size: 15px;
+                vertical-align: middle;
+            }
+
+            .cafe-reserve {
+                color: var(--google-blue-500);
+            }
+
+            iron-icon.star {
+                --iron-icon-width: 16px;
+                --iron-icon-height: 16px;
+                color: var(--paper-amber-500);
+            }
+
+            iron-icon.star:last-of-type {
+                color: var(--paper-grey-500);
+            }
+
         </style>
 
-        <div class="card">
+        <div class="card" flex="column">
             <h1>View all the local deals!</h1>
         </div>
 
+        <div class="horizontal">
         <template is="dom-repeat" items="[[markers]]" as="marker">
 
-            <!--
-            <!--<paper-card image="demo/donuts.png">
-            <paper-card>
+            <paper-card
+                    image="https://ing.dist.sdlmedia.com/Distributions/?f=49B1DF51-F1E2-4910-88EE-74395FB074F4&ext=.jpg">
+                <!--<paper-card>-->
                 <div class="card-content">
                     <div class="cafe-header">[[marker.label]]
                         <div class="cafe-location cafe-light">
@@ -56,25 +85,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <iron-icon class="star" icon="star"></iron-icon>
                         <iron-icon class="star" icon="star"></iron-icon>
                     </div>
-                    <p>$・Italian, Cafe</p>
+                    <p>&eur; 1,00 for a StarTruck Coffee</p>
                     <p class="cafe-light">Small plates, salads &amp; sandwiches in an intimate setting.</p>
                 </div>
                 <div class="card-actions">
                     <div class="horizontal justified">
                         <paper-icon-button icon="icons:event"></paper-icon-button>
-                        <paper-button>5:30PM</paper-button>
-                        <paper-button>7:30PM</paper-button>
-                        <paper-button>9:00PM</paper-button>
-                        <paper-button class="cafe-reserve">Reserve</paper-button>
+                        <paper-button>Get Info</paper-button>
+                        <paper-button>Get Direction</paper-button>
+                        <paper-button>Get Deal</paper-button>
                     </div>
                 </div>
             </paper-card>
-            -->
-            <div class="card">
-                <div class="label">[[marker.label]]</div>
-            </div>
-        </template>
 
+            <!--<div class="card">-->
+            <!--<div class="label">[[marker.label]]</div>-->
+            <!--</div>-->
+        </template>
+        </div>
     </template>
 
     <script>
