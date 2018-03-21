@@ -45,15 +45,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
 
-        <google-map-marker latitude="51.8365" longitude="4.46"
-                           title="Pacmen Go!" draggable="true" animation="DROP" click-events="true"
-                           on-google-map-marker-click="alert('hallo')"></google-map-marker>
+        <google-map-marker latitude="51.9165" longitude="4.445"
+                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
 
-        <google-map-marker latitude="51.84668" longitude="4.44"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
+        <google-map-marker latitude="51.91668" longitude="4.44"
+                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
 
-        <google-map-marker latitude="51.82670" longitude="4.45"
-                           title="Pacmen Go!" draggable="true"></google-map-marker>
+        <google-map-marker latitude="51.91670" longitude="4.45"
+                           title="Pacmen Go!" draggable="true" click-events="true"></google-map-marker>
+
 
         <template is="dom-repeat" items="{{results}}" as="marker">
           <google-map-marker latitude="{{marker.latitude}}"
@@ -72,27 +72,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
-
-      static get properties() {
-        return {
-          latitude: {
-            type: Number,
-            readOnly: true,
-            notify: true,
-            value: 51.81667
-
-          },
-          longitude: {
-            type: Number,
-            readOnly: true,
-            notify: true,
-            value: 4.4
-          }
+        static get is() {
+            return 'my-view1';
         }
-      }
-    }
 
+        static get properties() {
+            return {
+                latitude: {
+                    type: Number,
+                    notify: true,
+                    value: 51.81667
+
+                },
+                longitude: {
+                    type: Number,
+                    notify: true,
+                    value: 4.4
+                }
+            }
+        }
+
+        ready() {
+            this.addEventListener('google-map-marker-click', this.markerClicked);
+            super.ready();
+        }
+
+        markerClicked(events) {
+            alert('hi');
+        }
+
+    }
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>
