@@ -65,44 +65,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </google-map>
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-<ul>
-      <li>latitude : [[latitude]]</li>
-      <li>longitude: [[longitude]]</li>
-</ul>
     </div>
 
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
-
-      static get properties() {
-        return {
-          latitude: {
-            type: Number,
-            notify: true,
-            value: 51.81667
-
-          },
-          longitude: {
-            type: Number,
-            notify: true,
-            value: 4.4
-          }
+        static get is() {
+            return 'my-view1';
         }
-      }
 
-      ready() {
-          this.addEventListener('google-map-marker-click', this.markerClicked);
-          super.ready();
-      }
+        static get properties() {
+            return {
+                latitude: {
+                    type: Number,
+                    notify: true,
+                    value: 51.81667
 
-      markerClicked (events) {
-        alert('hi');
-      }
+                },
+                longitude: {
+                    type: Number,
+                    notify: true,
+                    value: 4.4
+                }
+            }
+        }
+
+        ready() {
+            this.addEventListener('google-map-marker-click', this.markerClicked);
+            super.ready();
+        }
+
+        markerClicked(events) {
+            alert('hi');
+        }
+
     }
-
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>
