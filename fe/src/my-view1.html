@@ -36,19 +36,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-
     <div class="map">
       <google-map-search map="[[map]]" query="Pizza" results="{{results}}">
       </google-map-search>
 
       <google-map-directions map="{{map}}"
                              api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                             start-address="nibbixwoudstraat 6 amsterdam"
-                             end-address="Nieuwendammerdijk 278 amsterdam"
-                             travel-mode="BICYCLING"
-                             waypoints='[{"location": "Palo Alto"}, {"location": "San Mateo"}]'></google-map-directions>
+                             start-address="rotterdam"
+                             end-address="amsterdam"
+                             travel-mode="WALKING"
+                             waypoints='[{"location": "rotterdam"}, {"location": "amsterdam"}]'></google-map-directions>
 
-      <google-map latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
+      <google-map map="{{map}}" latitude="51.91667" longitude="4.5" api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
         <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                            title="Pacmen Go!" draggable="true"></google-map-marker>
@@ -84,6 +83,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     value: 51.81667
 
                 },
+                map: Object,
+
                 longitude: {
                     type: Number,
                     notify: true,
