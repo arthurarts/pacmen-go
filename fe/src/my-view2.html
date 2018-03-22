@@ -168,13 +168,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }
 
-            selectDeal() {
+            selectDeal(e) {
+                var deal = e.detail.marker;
+                console.log(deal);
                 this.set('dealSelected', true);
-            }
-
-
-            getMarkers(event) {
-                this.markers = event.detail.markers;
             }
 
             _distanceToShop(lat, lon) {
@@ -220,6 +217,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 return 10;
             }
+
+            getMarkers(event) {
+                this.markers = event.detail.markers;
+            }
+
 
 
         }
