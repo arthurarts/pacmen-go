@@ -193,26 +193,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 var service = new google.maps.DistanceMatrixService;
 
-                service.getDistanceMatrix({
-                    origins: [origin],
-                    destinations: [destination],
-                    travelMode: 'WALKING',
-                    unitSystem: google.maps.UnitSystem.METRIC,
-                }, function (response, status) {
-                    if (status !== 'OK') {
-                        alert('Error was: ' + status);
-                    } else {
-                        var distance = response.rows[0].elements[0].distance;
-                        if (distance.value < 1000) {
-                            console.log(distance.value + " m");
+                function getDist() {
+                    var dist;
+                    service.getDistanceMatrix({
+                        origins: [origin],
+                        destinations: [destination],
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                    }, function (response, status) {
+                        if (status !== 'OK') {
+                            alert('Error was: ' + status);
                         } else {
-                            console.log(distance.text);
+                            var distance = response.rows[0].elements[0].distance;
+                            if (distance.value < 1000) {
+                                console.log(distance.value + " m");
+                                dist = distance.value + " m";
+                            } else {
+                                console.log(distance.text);
+                                dist = distance.text;
+                            }
                         }
-                        // return response.rows[0].elements[0].distance.text;
-                    }
-                });
+                    });
+                }
 
-                // this should be the value from the distance matrix!
+                getDist();
+
                 return 10;
             }
 
