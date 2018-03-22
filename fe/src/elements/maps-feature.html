@@ -4,8 +4,8 @@
 <link rel="import" href="../../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../../bower_components/google-map/google-map-poly.html">
 <link rel="import" href="../../bower_components/google-map/google-map-point.html">
+<link rel="import" href="../../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
-<link rel="import" href="business-locations.html">
 
 <dom-module id="maps-feature">
     <template>
@@ -23,25 +23,12 @@
         </style>
 
         <div class="map">
-            <template is="dom-if" if="[[showDirection]]" restamp>
                 <google-map-directions map="{{map}}"
                                        api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
                                        start-address="{{startAddress}}"
                                        end-address="{{endAddress}}"
                                        travel-mode="WALKING"
                 ></google-map-directions>
-            </template>
-
-            <template is="dom-if" if="[[markers]]" restamp>
-
-                <google-map-directions map="{{map}}"
-                                       api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                                       start-address="Turnhoutsebaan 5"
-                                       end-address="Rozenlaan wijnegem"
-                                       travel-mode="WALKING"
-                ></google-map-directions>
-
-            </template>
 
             <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
                         api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
@@ -60,7 +47,7 @@
             </google-map>
 
             <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-            <paper-toast text="You are nearby our Trusted ING Business who is offering a discount today!" id="toast"></paper-toast>
+            <paper-toast text="You are nearby our Trusted ING Business who is offering a discount today!" id="toast" duration="5000"></paper-toast>
 
         </div>
     </template>
@@ -94,17 +81,24 @@
                         type: Boolean
                     },
 
-                    startAddress: String,
-                    endAddress: String
+                    startAddress: {
+                        type: String,
+                        value: 'Turnhoutsebaan 5'
+                    },
+                    endAddress: {
+                        type: String,
+                        value: 'Rozenlaan wijnegem'
+                    },
                 }
             }
 
             ready() {
                 this.addEventListener('google-map-marker-click', this.markerClicked);
                 super.ready();
+
                 setTimeout( () => {
                     this.$.toast.open();
-            },100);
+                }, 10000);
             }
 
             markerClicked(events) {
