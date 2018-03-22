@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             paper-card {
                 margin: 25px;
-                max-width: 25%;
+                max-width: 100%;
             }
 
             .card-content {
@@ -123,7 +123,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template is="dom-if" if="[[dealSelected]]">
 
             <div class="close">Close this</div>
-            <maps-feature start-address="[[startAddress]]" end-address="[[endAddress]]" show-direction="true"></maps-feature>
+            <maps-feature start-address="[[startAddress]]" end-address="[[endAddress]]"
+                          show-direction="true"></maps-feature>
         </template>
     </template>
 
@@ -142,6 +143,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         value: 51.221810
 
                     },
+                    longitude: {
+                        type: Number,
+                        notify: true,
+                        value: 4.500395
+                    },
                     startAddress: {
                         type: String,
                         value: 'Turnhoutsebaan 5'
@@ -149,11 +155,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     endAddress: {
                         type: String,
                         value: 'Dorenboslaan'
-                    },
-                    longitude: {
-                        type: Number,
-                        notify: true,
-                        value: 4.500395
                     },
                     markers: {
                         type: Object,
@@ -169,9 +170,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             selectDeal(e) {
-                var deal = e.detail.marker;
-                console.log(deal);
+                var deal = e.model.marker;
+
+                var destination = this.getLocationName(deal.latitude, deal.longitude);
+
                 this.set('dealSelected', true);
+            }
+
+            getLocationName(lat, lon) {
+                var origin = this.latitude + "," + this.longitude;
+                var destination = lat + "," + lon;
+                var service = new google.maps.DistanceMatrixService;
+                var des = null;
+
+                getDist();
+
+                function getDist() {
+                    service.getDistanceMatrix({
+                        origins: [origin],
+                        destinations: [destination],
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                    }, function (response, status) {
+                        if (status !== 'OK') {
+                            alert('Error was: ' + status);
+                        } else {
+//                            console.log(response.destinationAddresses[0]);
+                            des = response.destinationAddresses[0];
+                        }
+                    });
+                }
+
+                return des;
             }
 
             _distanceToShop(lat, lon) {
@@ -183,15 +213,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 //origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
 
-                console.log("pos: ", this.latitude, this.longitude);
-                console.log("lat, lon", lat, lon);
 
                 var origin = this.latitude + "," + this.longitude;
                 var destination = lat + "," + lon;
 
                 var service = new google.maps.DistanceMatrixService;
 
-                function getDist() {
+                function getDist () {
                     var dist;
                     service.getDistanceMatrix({
                         origins: [origin],
@@ -205,7 +233,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             console.debug(response);
                             var distance = response.rows[0].elements[0].distance;
                             if (distance.value < 1000) {
-                                console.log(distance.value + " m");git
+                                console.log(distance.value + " m");
                                 dist = distance.value + " m";
                             } else {
                                 console.log(distance.text);
@@ -218,13 +246,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return Math.floor(Math.random() * 999) + " m";
 
 
-
             }
 
             getMarkers(event) {
                 this.markers = event.detail.markers;
             }
-
 
 
         }
