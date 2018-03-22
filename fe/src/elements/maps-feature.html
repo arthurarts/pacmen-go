@@ -23,12 +23,12 @@
         </style>
 
         <div class="map">
-                <google-map-directions map="{{map}}"
-                                       api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                                       start-address="{{startAddress}}"
-                                       end-address="{{endAddress}}"
-                                       travel-mode="WALKING"
-                ></google-map-directions>
+            <google-map-directions map="{{map}}"
+                                   api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
+                                   start-address="{{startAddress}}"
+                                   end-address="{{endAddress}}"
+                                   travel-mode="WALKING"
+            ></google-map-directions>
 
             <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
                         api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
@@ -40,18 +40,19 @@
                         <google-map-marker
                                 latitude="{{marker.latitude}}"
                                 longitude="{{marker.longitude}}"
-                                title="{{marker.shopTitle}}"
-                        >
-                            <p><b>{{marker.deal.label}}</b></p>
-                            <span><b>{{marker.shopTitle}}</b><br>
-                        {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
+                                title="{{marker.shopTitle}}" click-events="true">
+                            <h1>[[marker.shopTitle]]</h1>
+                            <h2>[[marker.deal.label]]</h2>
+                            <p>[[marker.formattedAddress]]</p>
+                            <img src="[[marker.image]]" width="300" position="center"/></span>
                         </google-map-marker>
                     </template>
                 </template>
             </google-map>
 
             <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-            <paper-toast text="You are nearby our Trusted ING Business who is offering a discount today!" id="toast" duration="5000"></paper-toast>
+            <paper-toast text="You are nearby our Trusted ING Business who is offering a discount today!" id="toast"
+                         duration="5000"></paper-toast>
 
         </div>
     </template>
@@ -100,7 +101,7 @@
                 this.addEventListener('google-map-marker-click', this.markerClicked);
                 super.ready();
 
-                setTimeout( () => {
+                setTimeout(() => {
                     this.$.toast.open();
                 }, 10000);
             }
@@ -110,6 +111,7 @@
             }
 
         }
+
         window.customElements.define(MapsFeature.is, MapsFeature);
     </script>
 </dom-module>
