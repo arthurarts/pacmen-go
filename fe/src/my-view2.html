@@ -171,6 +171,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             _distanceToShop(lat, lon) {
+                // this code does not return satisfactory results
 
                 // "latitude": 51.222297,
                 // "longitude": 4.501967,
@@ -197,9 +198,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         if (status !== 'OK') {
                             alert('Error was: ' + status);
                         } else {
+                            console.debug(response);
                             var distance = response.rows[0].elements[0].distance;
                             if (distance.value < 1000) {
-                                console.log(distance.value + " m");
+                                console.log(distance.value + " m");git
                                 dist = distance.value + " m";
                             } else {
                                 console.log(distance.text);
@@ -209,9 +211,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     });
                 }
 
-                getDist();
+                return Math.floor(Math.random() * 999) + " m";
 
-                return 10;
+
+
             }
 
 
