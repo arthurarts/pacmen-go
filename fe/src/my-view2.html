@@ -67,6 +67,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 color: var(--paper-grey-500);
             }
 
+            .close {
+                position: absolute;
+                top: 100px;
+                float: right;
+            }
         </style>
 
         <template is="dom-if" if="[[!dealSelected]]">
@@ -103,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </div>
                         <div class="card-actions">
                             <div class="horizontal justified">
-                                <paper-button>Get Direction</paper-button>
+                                <paper-button on-tap="selectDeal">Get Direction</paper-button>
                             </div>
                         </div>
                     </paper-card>
@@ -111,7 +116,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
         </template>
 
-        <template is="dom-if" if="[[!dealSelected]]">
+        <template is="dom-if" if="[[dealSelected]]">
+
+            <div class="close">Close this</div>
             <maps-feature></maps-feature>sadasdasdasd
         </template>
     </template>
@@ -136,6 +143,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     },
 
                 }
+            }
+
+            selectDeal() {
+                this.set('dealSelected', true);
             }
 
 
