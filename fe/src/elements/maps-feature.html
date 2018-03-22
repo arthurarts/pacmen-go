@@ -40,11 +40,11 @@
                         <google-map-marker
                                 latitude="{{marker.latitude}}"
                                 longitude="{{marker.longitude}}"
-                                title="{{marker.shopTitle}}">
+                                title="{{marker.shopTitle}}" click-events="true">
                             <h1>[[marker.shopTitle]]</h1>
                             <h2>[[marker.deal.label]]</h2>
                             <p>[[marker.formattedAddress]]</p>
-                            <img src="[[marker.image]]" width="300"/></span>
+                            <img src="[[marker.image]]" width="300" position="center"/></span>
                         </google-map-marker>
                     </template>
                 </template>
