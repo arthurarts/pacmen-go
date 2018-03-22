@@ -28,8 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 display: block;
             }
         </style>
+        <business-locations on-get-markers="getMarkers"></business-locations>
 
-        <maps-feature></maps-feature>
+        <maps-feature markers="[[markers]]" show-directions="false"></maps-feature>
     </template>
 
     <script>
@@ -39,8 +40,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             static get properties() {
-                return {}
+                return {
+                    markers: Object
+                }
             }
+
+            getMarkers(event) {
+                this.markers = event.detail.markers;
+            }
+
         }
         window.customElements.define(MyView1.is, MyView1);
     </script>

@@ -21,30 +21,40 @@
 
         </style>
 
-        <business-locations on-get-markers="getMarkers"></business-locations>
-
         <div class="map">
+            <template is="dom-if" if="[[showDirection]]" restamp>
+                <google-map-directions map="{{map}}"
+                                       api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
+                                       start-address="{{startAddress}}"
+                                       end-address="{{endAddress}}"
+                                       travel-mode="WALKING"
+                ></google-map-directions>
+            </template>
 
-            <business-locations on-get-markers="getMarkers"></business-locations>
+            <template is="dom-if" if="[[markers]]" restamp>
 
-            <google-map-directions map="{{map}}"
-                                   api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                                   start-address="Turnhoutsebaan 5"
-                                   end-address="Dorenboslaan"
-                                   travel-mode="WALKING"
-            ></google-map-directions>
+                <google-map-directions map="{{map}}"
+                                       api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
+                                       start-address="Turnhoutsebaan 5"
+                                       end-address="Rozenlaan wijnegem"
+                                       travel-mode="WALKING"
+                ></google-map-directions>
+
+            </template>
 
             <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
                         api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
 
                 <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
                                    title="ING Club" draggable="true" animation="DROP"></google-map-marker>
-                <template is="dom-repeat" items="{{markers}}" as="marker">
-                    <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
-                        <p><b>{{marker.deal.label}}</b></p>
-                        <span><b>{{marker.shoptitle}}</b><br>
+                <template is="dom-if" if="[[markers]]">
+                    <template is="dom-repeat" items="{{markers}}" as="marker">
+                        <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
+                            <p><b>{{marker.deal.label}}</b></p>
+                            <span><b>{{marker.shoptitle}}</b><br>
                         {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
-                    </google-map-marker>
+                        </google-map-marker>
+                    </template>
                 </template>
             </google-map>
 
@@ -62,20 +72,27 @@
                     latitude: {
                         type: Number,
                         notify: true,
-                        value: 51.81667
+                        value: 51.221810
 
                     },
-                    map: Object,
-
                     longitude: {
                         type: Number,
                         notify: true,
-                        value: 4.4
+                        value: 4.500395
                     },
+                    map: Object,
+
                     markers: {
                         type: Object,
                         notify: true,
                     },
+
+                    showDirection: {
+                        type: Boolean
+                    },
+
+                    startAddress: String,
+                    endAddress: String
                 }
             }
 
@@ -87,11 +104,6 @@
             markerClicked(events) {
                 console.log(events);
             }
-
-            getMarkers(event) {
-                this.markers = event.detail.markers;
-            }
-
 
         }
         window.customElements.define(MapsFeature.is, MapsFeature);
