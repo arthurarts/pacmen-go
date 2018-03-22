@@ -20,6 +20,10 @@
                 height: 88vh;
             }
 
+            paper-toast {
+                --paper-toast-background-color: #ff6200;
+            }
+
         </style>
 
         <div class="map">
@@ -50,9 +54,12 @@
                 </template>
             </google-map>
 
-            <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-            <paper-toast text="You are nearby our Trusted ING Business who is offering a discount today!" id="toast"
-                         duration="5000"></paper-toast>
+            <geo-location latitude="{{latitude}}" text="Cool deals spotted nearby! Check it out!" longitude="{{longitude}}"></geo-location>
+            <paper-toast id="toast"
+                         duration="5000">
+                <a href="#">Cool deals spotted nearby! Check it out!</a>
+
+            </paper-toast>
 
         </div>
     </template>
