@@ -31,7 +31,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             paper-card {
                 margin: 25px;
-                max-width: 500px;
+                max-width: 25%;
+            }
+
+            .card-content {
+                height: 100px;
             }
 
             .cafe-header {
@@ -65,6 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
 
 
+        <!--<template is="dom-if" if="[[!dealSelected]]">-->
         <div class="card" flex="column">
             <h1>View all the local deals!</h1>
         </div>
@@ -91,20 +96,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <iron-icon class="star" icon="star"></iron-icon>
                             <iron-icon class="star" icon="star"></iron-icon>
                         </div>
-                        <p>[[marker.deal.label]]</p>
-                        <p class="cafe-light">[[marker.formatted_address]]</p>
+                        <div class="card-content">
+                            <p>[[marker.deal.label]]</p>
+                            <p class="cafe-light">[[marker.formatted_address]]</p>
+                        </div>
                     </div>
                     <div class="card-actions">
                         <div class="horizontal justified">
-                            <paper-icon-button icon="icons:event"></paper-icon-button>
-                            <paper-button>Get Info</paper-button>
                             <paper-button>Get Direction</paper-button>
-                            <paper-button>Get Deal</paper-button>
                         </div>
                     </div>
                 </paper-card>
             </template>
         </div>
+        <!--</template>-->
     </template>
 
     <script>
@@ -120,6 +125,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         type: Object,
                         notify: true,
                     },
+
+                    dealSelected: {
+                        type: Boolean,
+                        default: false
+                    },
+
                 }
             }
 
