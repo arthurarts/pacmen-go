@@ -88,7 +88,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <business-locations on-get-markers="getMarkers"></business-locations>
 
                 <template is="dom-repeat" items="[[markers]]" as="marker">
-
                     <paper-card
                             image="[[marker.image]]">
                         <!--<paper-card>-->
@@ -124,7 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template is="dom-if" if="[[dealSelected]]">
 
             <div class="close">Close this</div>
-            <maps-feature></maps-feature>sadasdasdasd
+            <maps-feature start-address="[[startAddress]]" end-address="[[endAddress]]" show-direction="true"></maps-feature>
         </template>
     </template>
 
@@ -142,6 +141,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         notify: true,
                         value: 51.221810
 
+                    },
+                    startAddress: {
+                        type: String,
+                        value: 'Turnhoutsebaan 5'
+                    },
+                    endAddress: {
+                        type: String,
+                        value: 'Dorenboslaan'
                     },
                     longitude: {
                         type: Number,

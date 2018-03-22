@@ -16,7 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
-<link rel="import" href="elements/business-locations.html">
 <link rel="import" href="elements/maps-feature.html">
 
 <link rel="import" href="shared-styles.html">
@@ -28,8 +27,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 display: block;
             }
         </style>
+        <business-locations on-get-markers="getMarkers"></business-locations>
 
-        <maps-feature></maps-feature>
+        <maps-feature markers="[[markers]]" show-directions="false"></maps-feature>
     </template>
 
     <script>
@@ -39,8 +39,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             static get properties() {
-                return {}
+                return {
+                    markers: Object
+                }
             }
+
+            getMarkers(event) {
+                this.markers = event.detail.markers;
+            }
+
         }
         window.customElements.define(MyView1.is, MyView1);
     </script>
