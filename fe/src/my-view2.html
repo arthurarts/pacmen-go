@@ -16,9 +16,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
+</script>
 
 
 <dom-module id="my-view2">
@@ -64,6 +69,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
+        <!--<iron-ajax-->
+        <!--auto-->
+        <!--url="https://maps.googleapis.com/maps/api/distancematrix/json?"-->
+        <!--params="{{googleParams}}"-->
+        <!--last-response="{{data}}"-->
+        <!--handle-as="json"-->
+        <!--&gt;-->
+        <!--</iron-ajax>-->
 
         <div class="card" flex="column">
             <h1>View all the local deals!</h1>
@@ -71,6 +84,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="horizontal">
             <business-locations on-get-markers="getMarkers"></business-locations>
+
+            <div>{{data}}</div>
 
             <template is="dom-repeat" items="[[markers]]" as="marker">
 
@@ -81,7 +96,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="cafe-header">[[marker.shoptitle]]
                             <div class="cafe-location cafe-light">
                                 <iron-icon icon="communication:location-on"></iron-icon>
-                                <span>300 m</span>
+                                <span>
+                                    {{data}}
+                                    [[_distanceToShop(marker.latitude, marker.longitude)]]
+                                </span>
                             </div>
                         </div>
                         <div class="cafe-rating">
@@ -116,16 +134,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             static get properties() {
                 return {
+                    latitude: {
+                        type: Number,
+                        notify: true,
+                        value: 51.221810
+
+                    },
+                    longitude: {
+                        type: Number,
+                        notify: true,
+                        value: 4.500395
+                    },
                     markers: {
                         type: Object,
                         notify: true,
                     },
+                    googleParams: {
+                        type: String,
+                        computed: '_distanceToShop(lat, lon)'
+                    }
                 }
             }
 
 
             getMarkers(event) {
                 this.markers = event.detail.markers;
+            }
+
+            _distanceToShop(lat, lon) {
+
+                // "latitude": 51.222297,
+                // "longitude": 4.501967,
+                // https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
+
+                //origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
+
+                console.log("pos: ", this.latitude, this.longitude);
+                console.log("lat, lon", lat, lon);
+
+                var origin = this.latitude + "," + this.longitude;
+                var destination = lat + "," + lon;
+
+                var service = new google.maps.DistanceMatrixService;
+
+                service.getDistanceMatrix({
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: 'WALKING',
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                }, function (response, status) {
+                    if (status !== 'OK') {
+                        alert('Error was: ' + status);
+                    } else {
+                        var distance = response.rows[0].elements[0].distance;
+                        if (distance.value < 1000) {
+                            console.log(distance.value + " m");
+                        } else {
+                            console.log(distance.text);
+                        }
+                        // return response.rows[0].elements[0].distance.text;
+                    }
+                });
+
+                // this should be the value from the distance matrix!
+                return 10;
             }
 
 
