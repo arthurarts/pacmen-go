@@ -38,8 +38,8 @@
                 <template is="dom-if" if="[[markers]]">
                     <template is="dom-repeat" items="{{markers}}" as="marker">
                         <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
+                            <h1>{{marker.shopTitle}}</h1>
                             <p><b>{{marker.deal.label}}</b></p>
-                            <span><b>{{marker.shopTitle}}</b><br>
                         {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
                         </google-map-marker>
                     </template>
