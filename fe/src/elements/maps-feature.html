@@ -79,6 +79,15 @@
                 }
             }
 
+            ready() {
+                this.addEventListener('google-map-marker-click', this.markerClicked);
+                super.ready();
+            }
+
+            markerClicked(events) {
+                console.log(events);
+            }
+
             getMarkers(event) {
                 this.markers = event.detail.markers;
             }

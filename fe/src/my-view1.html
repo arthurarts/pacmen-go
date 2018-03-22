@@ -17,99 +17,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
 <link rel="import" href="elements/business-locations.html">
+<link rel="import" href="elements/maps-feature.html">
 
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-      }
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
 
-      .map {
-        width: 100%;
-        height: 100%;
-      }
+        <maps-feature></maps-feature>
+    </template>
 
-      google-map {
-        margin: 0;
-        height: 88vh;
-      }
-    </style>
+    <script>
+        class MyView1 extends Polymer.Element {
+            static get is() {
+                return 'my-view1';
+            }
 
-    <div class="map">
-
-      <business-locations on-get-markers="getMarkers"></business-locations>
-
-      <google-map-directions map="{{map}}"
-                             api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                             start-address="Turnhoutsebaan 5"
-                             end-address="Dorenboslaan"
-                             travel-mode="WALKING"
-                             ></google-map-directions>
-
-      <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
-                  api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
-
-        <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
-                           title="ING Club" draggable="true" animation="DROP"></google-map-marker>
-        <template is="dom-repeat" items="{{markers}}" as="marker">
-          <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
-            <p><b>{{marker.deal.label}}</b></p>
-            <span><b>{{marker.shoptitle}}</b><br>
-            {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
-          </google-map-marker>
-        </template>
-      </google-map>
-
-      <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-    </div>
-
-  </template>
-
-  <script>
-    class MyView1 extends Polymer.Element {
-      static get is() {
-        return 'my-view1';
-      }
-
-      static get properties() {
-        return {
-          latitude: {
-            type: Number,
-            notify: true,
-            value: 51.81667
-
-                },
-                map: Object,
-
-                longitude: {
-                    type: Number,
-                    notify: true,
-                    value: 4.4
-                },
-                markers: {
-                    type: Object,
-                    notify: true,
-                },
+            static get properties() {
+                return {}
             }
         }
-
-      ready() {
-        this.addEventListener('google-map-marker-click', this.markerClicked);
-        super.ready();
-      }
-
-        markerClicked(events) {
-            console.log(events);
-        }
-
-        getMarkers(event) {
-            this.markers = event.detail.markers;
-        }
-
-    }
-    window.customElements.define(MyView1.is, MyView1);
-  </script>
+        window.customElements.define(MyView1.is, MyView1);
+    </script>
 </dom-module>
