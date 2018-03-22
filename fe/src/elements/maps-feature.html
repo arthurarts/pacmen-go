@@ -102,9 +102,10 @@
             ready() {
                 this.addEventListener('google-map-marker-click', this.markerClicked);
                 super.ready();
+
                 setTimeout( () => {
                     this.$.toast.open();
-            },10000);
+                }, 10000);
             }
 
             markerClicked(events) {
