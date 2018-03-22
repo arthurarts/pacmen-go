@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="elements/business-locations.html">
+<link rel="import" href="elements/maps-feature.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -36,7 +37,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             paper-card {
                 margin: 25px;
-                max-width: 500px;
+                max-width: 25%;
+            }
+
+            .card-content {
+                height: 100px;
             }
 
             .cafe-header {
@@ -69,60 +74,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
-        <!--<iron-ajax-->
-        <!--auto-->
-        <!--url="https://maps.googleapis.com/maps/api/distancematrix/json?"-->
-        <!--params="{{googleParams}}"-->
-        <!--last-response="{{data}}"-->
-        <!--handle-as="json"-->
-        <!--&gt;-->
-        <!--</iron-ajax>-->
+        <template is="dom-if" if="[[!dealSelected]]">
+            <div class="card" flex="column">
+                <h1>View all the local deals!</h1>
+            </div>
 
-        <div class="card" flex="column">
-            <h1>View all the local deals!</h1>
-        </div>
+            <div class="horizontal">
+                <business-locations on-get-markers="getMarkers"></business-locations>
 
-        <div class="horizontal">
-            <business-locations on-get-markers="getMarkers"></business-locations>
+                <template is="dom-repeat" items="[[markers]]" as="marker">
 
-            <div>{{data}}</div>
-
-            <template is="dom-repeat" items="[[markers]]" as="marker">
-
-                <paper-card
-                        image="[[marker.image]]">
-                    <!--<paper-card>-->
-                    <div class="card-content">
-                        <div class="cafe-header">[[marker.shoptitle]]
-                            <div class="cafe-location cafe-light">
-                                <iron-icon icon="communication:location-on"></iron-icon>
-                                <span>
-                                    {{data}}
-                                    [[_distanceToShop(marker.latitude, marker.longitude)]]
-                                </span>
+                    <paper-card
+                            image="[[marker.image]]">
+                        <!--<paper-card>-->
+                        <div class="card-content">
+                            <div class="cafe-header">[[marker.shoptitle]]
+                                <div class="cafe-location cafe-light">
+                                    <iron-icon icon="communication:location-on"></iron-icon>
+                                    <span>[[_distanceToShop(marker.latitude,marker.longitude)]]</span>
+                                </div>
+                            </div>
+                            <div class="cafe-rating">
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                            </div>
+                            <div class="card-content">
+                                <p>[[marker.deal.label]]</p>
+                                <p class="cafe-light">[[marker.formatted_address]]</p>
                             </div>
                         </div>
-                        <div class="cafe-rating">
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
+                        <div class="card-actions">
+                            <div class="horizontal justified">
+                                <paper-button>Get Direction</paper-button>
+                            </div>
                         </div>
-                        <p>[[marker.deal.label]]</p>
-                        <p class="cafe-light">[[marker.formatted_address]]</p>
-                    </div>
-                    <div class="card-actions">
-                        <div class="horizontal justified">
-                            <paper-icon-button icon="icons:event"></paper-icon-button>
-                            <paper-button>Get Info</paper-button>
-                            <paper-button>Get Direction</paper-button>
-                            <paper-button>Get Deal</paper-button>
-                        </div>
-                    </div>
-                </paper-card>
-            </template>
-        </div>
+                    </paper-card>
+                </template>
+            </div>
+        </template>
+
+        <template is="dom-if" if="[[!dealSelected]]">
+            <maps-feature></maps-feature>sadasdasdasd
+        </template>
     </template>
 
     <script>
@@ -149,10 +145,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         type: Object,
                         notify: true,
                     },
-                    googleParams: {
-                        type: String,
-                        computed: '_distanceToShop(lat, lon)'
-                    }
+
+                    dealSelected: {
+                        type: Boolean,
+                        value: false
+                    },
+
                 }
             }
 
