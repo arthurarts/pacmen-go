@@ -37,9 +37,13 @@
                                    title="ING Club" draggable="true" animation="DROP"></google-map-marker>
                 <template is="dom-if" if="[[markers]]">
                     <template is="dom-repeat" items="{{markers}}" as="marker">
-                        <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
+                        <google-map-marker
+                                latitude="{{marker.latitude}}"
+                                longitude="{{marker.longitude}}"
+                                title="{{marker.shopTitle}}"
+                        >
                             <p><b>{{marker.deal.label}}</b></p>
-                            <span><b>{{marker.shoptitle}}</b><br>
+                            <span><b>{{marker.shopTitle}}</b><br>
                         {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
                         </google-map-marker>
                     </template>
