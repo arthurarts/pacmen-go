@@ -1,0 +1,90 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/google-map/google-map-directions.html">
+<link rel="import" href="../../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../../bower_components/google-map/google-map-poly.html">
+<link rel="import" href="../../bower_components/google-map/google-map-point.html">
+<link rel="import" href="business-locations.html">
+
+<dom-module id="maps-feature">
+    <template>
+        <style>
+            .map {
+                width: 100%;
+                height: 100%;
+            }
+
+            google-map {
+                margin: 0;
+                height: 88vh;
+            }
+
+        </style>
+
+        <business-locations on-get-markers="getMarkers"></business-locations>
+
+        <div class="map">
+
+            <business-locations on-get-markers="getMarkers"></business-locations>
+
+            <google-map-directions map="{{map}}"
+                                   api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
+                                   start-address="Turnhoutsebaan 5"
+                                   end-address="Dorenboslaan"
+                                   travel-mode="WALKING"
+            ></google-map-directions>
+
+            <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
+                        api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
+
+                <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
+                                   title="ING Club" draggable="true" animation="DROP"></google-map-marker>
+                <template is="dom-repeat" items="{{markers}}" as="marker">
+                    <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}">
+                        <p><b>{{marker.deal.label}}</b></p>
+                        <span><b>{{marker.shoptitle}}</b><br>
+                        {{marker.formatted_address}}<br><img src="{{marker.image}}"/></span>
+                    </google-map-marker>
+                </template>
+            </google-map>
+
+            <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+        </div>
+    </template>
+    <script>
+        class MapsFeature extends Polymer.Element {
+            static get is() {
+                return 'maps-feature';
+            }
+
+            static get properties() {
+                return {
+                    latitude: {
+                        type: Number,
+                        notify: true,
+                        value: 51.81667
+
+                    },
+                    map: Object,
+
+                    longitude: {
+                        type: Number,
+                        notify: true,
+                        value: 4.4
+                    },
+                    markers: {
+                        type: Object,
+                        notify: true,
+                    },
+                }
+            }
+
+            getMarkers(event) {
+                this.markers = event.detail.markers;
+            }
+
+
+        }
+        window.customElements.define(MapsFeature.is, MapsFeature);
+    </script>
+</dom-module>

@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="elements/business-locations.html">
+<link rel="import" href="elements/maps-feature.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -68,48 +69,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
+        <template is="dom-if" if="[[!dealSelected]]">
+            <div class="card" flex="column">
+                <h1>View all the local deals!</h1>
+            </div>
 
-        <!--<template is="dom-if" if="[[!dealSelected]]">-->
-        <div class="card" flex="column">
-            <h1>View all the local deals!</h1>
-        </div>
+            <div class="horizontal">
+                <business-locations on-get-markers="getMarkers"></business-locations>
 
-        <div class="horizontal">
-            <business-locations on-get-markers="getMarkers"></business-locations>
+                <template is="dom-repeat" items="[[markers]]" as="marker">
 
-            <template is="dom-repeat" items="[[markers]]" as="marker">
-
-                <paper-card
-                        image="[[marker.image]]">
-                    <!--<paper-card>-->
-                    <div class="card-content">
-                        <div class="cafe-header">[[marker.shoptitle]]
-                            <div class="cafe-location cafe-light">
-                                <iron-icon icon="communication:location-on"></iron-icon>
-                                <span>300 m</span>
+                    <paper-card
+                            image="[[marker.image]]">
+                        <!--<paper-card>-->
+                        <div class="card-content">
+                            <div class="cafe-header">[[marker.shoptitle]]
+                                <div class="cafe-location cafe-light">
+                                    <iron-icon icon="communication:location-on"></iron-icon>
+                                    <span>300 m</span>
+                                </div>
+                            </div>
+                            <div class="cafe-rating">
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                                <iron-icon class="star" icon="star"></iron-icon>
+                            </div>
+                            <div class="card-content">
+                                <p>[[marker.deal.label]]</p>
+                                <p class="cafe-light">[[marker.formatted_address]]</p>
                             </div>
                         </div>
-                        <div class="cafe-rating">
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
-                            <iron-icon class="star" icon="star"></iron-icon>
+                        <div class="card-actions">
+                            <div class="horizontal justified">
+                                <paper-button>Get Direction</paper-button>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <p>[[marker.deal.label]]</p>
-                            <p class="cafe-light">[[marker.formatted_address]]</p>
-                        </div>
-                    </div>
-                    <div class="card-actions">
-                        <div class="horizontal justified">
-                            <paper-button>Get Direction</paper-button>
-                        </div>
-                    </div>
-                </paper-card>
-            </template>
-        </div>
-        <!--</template>-->
+                    </paper-card>
+                </template>
+            </div>
+        </template>
+
+        <template is="dom-if" if="[[!dealSelected]]">
+            <maps-feature></maps-feature>sadasdasdasd
+        </template>
     </template>
 
     <script>
@@ -128,7 +132,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                     dealSelected: {
                         type: Boolean,
-                        default: false
+                        value: false
                     },
 
                 }
