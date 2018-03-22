@@ -23,25 +23,12 @@
         </style>
 
         <div class="map">
-            <template is="dom-if" if="[[showDirection]]" restamp>
                 <google-map-directions map="{{map}}"
                                        api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
                                        start-address="{{startAddress}}"
                                        end-address="{{endAddress}}"
                                        travel-mode="WALKING"
                 ></google-map-directions>
-            </template>
-
-            <template is="dom-if" if="[[markers]]" restamp>
-
-                <google-map-directions map="{{map}}"
-                                       api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g"
-                                       start-address="Turnhoutsebaan 5"
-                                       end-address="Rozenlaan wijnegem"
-                                       travel-mode="WALKING"
-                ></google-map-directions>
-
-            </template>
 
             <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
                         api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
@@ -94,8 +81,14 @@
                         type: Boolean
                     },
 
-                    startAddress: String,
-                    endAddress: String
+                    startAddress: {
+                        type: String,
+                        value: 'Turnhoutsebaan 5'
+                    },
+                    endAddress: {
+                        type: String,
+                        value: 'Rozenlaan wijnegem'
+                    },
                 }
             }
 
