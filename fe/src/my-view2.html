@@ -117,7 +117,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
 
         <template is="dom-if" if="[[!dealSelected]]">
-            <maps-feature></maps-feature>sadasdasdasd
+            <maps-feature></maps-feature>
+            sadasdasdasd
         </template>
     </template>
 
@@ -161,11 +162,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             _distanceToShop(lat, lon) {
 
-                // "latitude": 51.222297,
-                // "longitude": 4.501967,
-                // https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
-
-                //origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
 
                 console.log("pos: ", this.latitude, this.longitude);
                 console.log("lat, lon", lat, lon);
@@ -175,30 +171,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 var service = new google.maps.DistanceMatrixService;
 
-                service.getDistanceMatrix({
-                    origins: [origin],
-                    destinations: [destination],
-                    travelMode: 'WALKING',
-                    unitSystem: google.maps.UnitSystem.METRIC,
-                }, function (response, status) {
-                    if (status !== 'OK') {
-                        alert('Error was: ' + status);
-                    } else {
-                        var distance = response.rows[0].elements[0].distance;
-                        if (distance.value < 1000) {
-                            console.log(distance.value + " m");
+                function getDist() {
+                    var dist;
+                    service.getDistanceMatrix({
+                        origins: [origin],
+                        destinations: [destination],
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                    }, function (response, status) {
+                        if (status !== 'OK') {
+                            alert('Error was: ' + status);
                         } else {
-                            console.log(distance.text);
+                            var distance = response.rows[0].elements[0].distance;
+                            if (distance.value < 1000) {
+                                console.log(distance.value + " m");
+                                dist = distance.value + " m";
+                            } else {
+                                console.log(distance.text);
+                                dist = distance.text;
+                            }
                         }
-                        // return response.rows[0].elements[0].distance.text;
-                    }
-                });
+                    });
+                }
 
-                // this should be the value from the distance matrix!
+                getDist();
+
                 return 10;
-            }
-
-
+            };
         }
 
         window.customElements.define(MyView2.is, MyView2);
