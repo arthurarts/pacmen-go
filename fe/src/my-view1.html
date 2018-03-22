@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-map/google-map-point.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="elements/business-locations.html">
 
 <link rel="import" href="shared-styles.html">
@@ -65,6 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
     </div>
+    <paper-toast text="You are nearby our Trusted ING Business who is offering a discount today!" id="toast"></paper-toast>
 
   </template>
 
@@ -99,6 +101,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ready() {
         this.addEventListener('google-map-marker-click', this.markerClicked);
         super.ready();
+        setTimeout( () => {
+            this.$.toast.open();
+        },10000);
       }
 
         markerClicked(events) {
