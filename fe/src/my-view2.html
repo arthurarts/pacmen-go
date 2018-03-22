@@ -205,15 +205,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             _distanceToShop(lat, lon) {
-                // this code does not return satisfactory results
-
-                // "latitude": 51.222297,
-                // "longitude": 4.501967,
-                // https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
-
-                //origins=51.221810,4.500395&destinations=51.222297,4.501967&mode=walking&language=en-GB&key=AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g
-
-
                 var origin = this.latitude + "," + this.longitude;
                 var destination = lat + "," + lon;
 
@@ -230,29 +221,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         if (status !== 'OK') {
                             alert('Error was: ' + status);
                         } else {
-                            console.debug(response);
                             var distance = response.rows[0].elements[0].distance;
                             if (distance.value < 1000) {
-                                console.log(distance.value + " m");
                                 dist = distance.value + " m";
                             } else {
-                                console.log(distance.text);
                                 dist = distance.text;
                             }
                         }
                     });
                 }
-
                 return Math.floor(Math.random() * 999) + " m";
-
-
             }
 
             getMarkers(event) {
                 this.markers = event.detail.markers;
             }
-
-
         }
 
         window.customElements.define(MyView2.is, MyView2);
