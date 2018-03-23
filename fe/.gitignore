@@ -1,5 +1,4 @@
 bower_components/
-build/
 node_modules/
 
 ../.DS_Store
@@ -23,10 +22,3 @@ target/
 *.iml
 *.ipr
 
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
