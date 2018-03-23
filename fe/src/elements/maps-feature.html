@@ -21,7 +21,8 @@
             }
 
             paper-toast {
-                --paper-toast-background-color: #ff6200;
+                --paper-toast-background-color: #ffee00;
+                color: black;
             }
 
         </style>
@@ -35,29 +36,30 @@
             ></google-map-directions>
 
             <google-map map="{{map}}" latitude="51.221810" longitude="4.500395"
-                        api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g">
+                        api-key="AIzaSyDaGvdEig57JDplmrPiGsFv9saI9vO959g" single-info-window="true" disable-default-ui="true">
 
                 <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
-                                   title="ING Club" draggable="true" animation="DROP"></google-map-marker>
+                                   title="Pacmen Deals" draggable="true" animation="DROP"></google-map-marker>
                 <template is="dom-if" if="[[markers]]">
                     <template is="dom-repeat" items="{{markers}}" as="marker">
                         <google-map-marker
                                 latitude="{{marker.latitude}}"
                                 longitude="{{marker.longitude}}"
                                 title="{{marker.shopTitle}}" click-events="true">
-                            <h1>[[marker.shopTitle]]</h1>
-                            <h2>[[marker.deal.label]]</h2>
-                            <p>[[marker.formattedAddress]]</p>
-                            <img src="[[marker.image]]" width="300" position="center"/></span>
+                            <div id="markerDescription" style="max-width: 300px;">
+                                <h2>[[marker.shopTitle]]</h2>
+                                <p><b>[[marker.deal.label]]</b></p>
+                                <p>[[marker.formattedAddress]]</p>
+                                <img src="[[marker.image]]" width="300" position="center"/></span>
+                            </div>
                         </google-map-marker>
                     </template>
                 </template>
             </google-map>
 
-            <geo-location latitude="{{latitude}}" text="Cool deals spotted nearby! Check it out!" longitude="{{longitude}}"></geo-location>
+            <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
             <paper-toast id="toast"
-                         duration="5000">
-                <a href="#">Cool deals spotted nearby! Check it out!</a>
+                         duration="8000" text="Cool deals spotted nearby! Check it out!">
 
             </paper-toast>
 
@@ -110,7 +112,7 @@
 
                 setTimeout(() => {
                     this.$.toast.open();
-                }, 10000);
+                }, 2000);
             }
 
             markerClicked(events) {
